@@ -37,7 +37,7 @@ const ChatTab = () => {
 
   const fetchChats = async () => {
     try {
-      const response = await api.get('/chat');
+      const response = await api.get('https://studymaster-production.up.railway.app/chat');
       setChats(response.data);
     } catch (error) {
       console.error('Error fetching chats:', error);
@@ -48,7 +48,7 @@ const ChatTab = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await api.get('/users/contacts');
+      const response = await api.get('https://studymaster-production.up.railway.app/users/contacts');
       setContacts(response.data);
     } catch (error) {
       console.error('Error fetching contacts:', error);
@@ -98,7 +98,7 @@ const ChatTab = () => {
 
   const startChat = async (contactId) => {
     try {
-      const response = await api.post('/chat/create', { participantId: contactId });
+      const response = await api.post('https://studymaster-production.up.railway.app/chat/create', { participantId: contactId });
       const newChat = response.data;
       
       setChats(prevChats => {

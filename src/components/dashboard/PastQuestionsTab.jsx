@@ -42,7 +42,7 @@ const PastQuestionsTab = () => {
 
   const fetchSubjects = async () => {
     try {
-      const response = await api.get(`/questions/subjects/${filters.examType}`);
+      const response = await api.get(`https://studymaster-production.up.railway.app/questions/subjects/${filters.examType}`);
       setSubjects(response.data);
       setFilters(prev => ({ ...prev, subject: '', year: '' }));
     } catch (error) {
@@ -52,7 +52,7 @@ const PastQuestionsTab = () => {
 
   const fetchYears = async () => {
     try {
-      const response = await api.get(`/questions/years/${filters.examType}/${filters.subject}`);
+      const response = await api.get(`https://studymaster-production.up.railway.app/questions/years/${filters.examType}/${filters.subject}`);
       setYears(response.data);
       setFilters(prev => ({ ...prev, year: '' }));
     } catch (error) {
@@ -63,7 +63,7 @@ const PastQuestionsTab = () => {
   const fetchQuestions = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/questions', { params: filters });
+      const response = await api.get('https://studymaster-production.up.railway.app/questions', { params: filters });
       setQuestions(response.data);
       console.log(response.data);
       setCurrentQuestion(0);
@@ -117,7 +117,7 @@ const PastQuestionsTab = () => {
 
     setAiLoading(true);
     try {
-      const response = await api.post('/ai/ask', { question: aiQuestion });
+      const response = await api.post('https://studymaster-production.up.railway.app/ai/ask', { question: aiQuestion });
       setAiResponse(response.data.answer);
     } catch (error) {
       toast.error('Error getting AI response');

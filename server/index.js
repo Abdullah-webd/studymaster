@@ -25,7 +25,7 @@ const __dirname = path.dirname(__filename);
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.NODE_ENV === 'production' ? false : ['http://localhost:5173'],
+    origin: process.env.NODE_ENV === 'production' ? false : ['http://localhost:5173','https://studymaster-production.up.railway.app'],
     methods: ['GET', 'POST']
   }
 });
@@ -41,7 +41,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? false : ['http://localhost:5173'],
+  origin: process.env.NODE_ENV === 'production' ? false : ['http://localhost:5173', 'https://studymaster-production.up.railway.app'],
   credentials: true
 }));
 app.use(express.json({ limit: '50mb' }));

@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
   const checkAuth = async () => {
     if (state.token) {
       try {
-        const response = await api.get('/auth/me');
+        const response = await api.get('https://studymaster-production.up.railway.app/auth/me');
         dispatch({
           type: 'AUTH_SUCCESS',
           payload: {
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await api.post('/auth/login', { email, password });
+      const response = await api.post('https://studymaster-production.up.railway.app/auth/login', { email, password });
       dispatch({
         type: 'AUTH_SUCCESS',
         payload: response.data
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await api.post('/auth/register', userData);
+      const response = await api.post('https://studymaster-production.up.railway.app/auth/register', userData);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Registration failed' };
@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }) => {
 
   const verifyOTP = async (userId, otp) => {
     try {
-      const response = await api.post('/auth/verify-otp', { userId, otp });
+      const response = await api.post('https://studymaster-production.up.railway.app/auth/verify-otp', { userId, otp });
       dispatch({
         type: 'AUTH_SUCCESS',
         payload: response.data

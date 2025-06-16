@@ -17,7 +17,7 @@ const AdsTab = () => {
 
   const fetchAds = async () => {
     try {
-      const response = await api.get('/ads');
+      const response = await api.get('https://studymaster-production.up.railway.app/ads');
       setAds(response.data);
     } catch (error) {
       console.error('Error fetching ads:', error);
@@ -33,7 +33,8 @@ const AdsTab = () => {
 
   const handleVideoEnd = async (adId) => {
     try {
-      const response = await api.post(`/ads/watch/${adId}`);
+      const response = await api.post(`https://studymaster-production.up.railway.app
+/ads/watch/${adId}`);
       toast.success(`Earned ${response.data.creditsEarned} credits!`);
       
       // Update user credits
