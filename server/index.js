@@ -30,12 +30,6 @@ const io = new Server(server, {
   }
 });
 
-app.use(express.static(path.join(__dirname, '../dist')));
-
-// Serve frontend
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist'));
-});
 // Connect to MongoDB
 connectDB();
 
@@ -84,6 +78,12 @@ setupSocketIO(io);
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ message: 'StudyMaster API is running!' });
+});
+
+app.use(express.static(path.join(__dirname, '../dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist'));
 });
 
 const PORT = process.env.PORT || 5000;
