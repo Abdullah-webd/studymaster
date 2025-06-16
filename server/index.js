@@ -14,10 +14,14 @@ import adRoutes from './routes/ads.js';
 import cbtRoutes from './routes/cbt.js';
 import { setupSocketIO } from './sockets/chatSocket.js';
 import axios from 'axios';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
@@ -26,6 +30,12 @@ const io = new Server(server, {
   }
 });
 
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// Serve frontend
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist'));
+});
 // Connect to MongoDB
 connectDB();
 
