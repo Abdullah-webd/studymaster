@@ -21,7 +21,7 @@ const AskAITab = () => {
 
   const fetchHistory = async () => {
     try {
-      const response = await api.get('https://studymaster-production.up.railway.app/ai/history');
+      const response = await api.get('/ai/history');
       setHistory(response.data);
     } catch (error) {
       console.error('Error fetching AI history:', error);

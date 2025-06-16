@@ -38,7 +38,7 @@ const CBTTab = () => {
 
   const fetchSubjects = async () => {
     try {
-      const response = await api.get(`https://studymaster-production.up.railway.app/questions/subjects/${selectedExam}`);
+      const response = await api.get(`/questions/subjects/${selectedExam}`);
       setSubjects(response.data);
       console.log('Fetched subjects:', response.data);
     } catch (error) {
@@ -48,7 +48,7 @@ const CBTTab = () => {
 
   const fetchResults = async () => {
     try {
-      const response = await api.get('https://studymaster-production.up.railway.app/cbt/results');
+      const response = await api.get('/cbt/results');
       setResults(response.data);
     } catch (error) {
       console.error('Error fetching results:', error);
@@ -62,7 +62,7 @@ const CBTTab = () => {
     }
 
     try {
-      const response = await api.get(`https://studymaster-production.up.railway.app/cbt/questions/${selectedExam}/${selectedSubject}`);
+      const response = await api.get(`/cbt/questions/${selectedExam}/${selectedSubject}`);
 
       console.log('CBT questions:', response.data);
       const { objectives, theories } = response.data;
@@ -130,7 +130,7 @@ const CBTTab = () => {
   console.log('Submitting CBT answers:', submissionAnswers);
 
   try {
-    const response = await api.post('https://studymaster-production.up.railway.app/cbt/submit', {
+    const response = await api.post('/cbt/submit', {
       examType: cbtSession.examType,
       subject: cbtSession.subject,
       answers: submissionAnswers,

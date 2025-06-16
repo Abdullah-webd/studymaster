@@ -24,7 +24,7 @@ const DashboardOverview = () => {
 
   const fetchCBTResults = async () => {
     try {
-      const response = await api.get('https://studymaster-production.up.railway.app/cbt/results');
+      const response = await api.get('/cbt/results');
       setCbtResults(response.data);
     } catch (error) {
       console.error('Error fetching CBT results:', error);
